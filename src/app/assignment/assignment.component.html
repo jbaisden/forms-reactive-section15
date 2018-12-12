@@ -1,0 +1,21 @@
+<form [formGroup]="projectForm" (ngSubmit)="onProjectSubmit()">
+  <div class="form-group">
+    <label for="projectName">Project Name</label>
+    <input type="text" class="form-control" formControlName="projectName" name="projectName">
+    <span *ngIf="hasError('projectName','required')">Project name is required!</span>
+    <span *ngIf="hasError('projectName','nameIsForbidden')">Project name is invalid!</span>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" formControlName="email" name="email">
+    <span *ngIf="hasError('email','required')">Email is required!</span>
+    <span *ngIf="hasError('email','email')">Email is not a valid email address!</span>
+  </div>
+  <div class="form-group">
+    <label for="email">Project Status</label>
+    <select name="projectStatus" class="form-control" formControlName="projectStatus" id="projectStatus">
+      <option (value)="status" *ngFor="let status of projectStatuses">{{ status }} </option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
